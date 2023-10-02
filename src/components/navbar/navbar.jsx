@@ -8,9 +8,15 @@ const Navbar = () => {
             Logo
           </Link>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-4">
           <Link to="/" className="font-semibold text-lg hover:text-green-600">
             Home
+          </Link>
+          <Link
+            to="/vans"
+            className="font-semibold text-lg hover:text-green-600"
+          >
+            Vans
           </Link>
           <Link
             to="/about"
