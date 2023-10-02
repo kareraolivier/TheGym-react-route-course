@@ -16,7 +16,7 @@ const Vandetail = () => {
     fetchVanDetails();
   }, [param.id]);
   return (
-    <div>
+    <div className="p-4">
       {vansdetails ? (
         <div className="flex flex-wrap justify-center gap-4 items-center">
           <div className="w-2/5">

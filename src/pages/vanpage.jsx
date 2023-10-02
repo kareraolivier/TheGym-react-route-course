@@ -18,7 +18,7 @@ const Vanpage = () => {
   }, []);
   return (
     <div>
-      <div>
+      <div className="">
         <VanCard vans={vans} />
       </div>
     </div>

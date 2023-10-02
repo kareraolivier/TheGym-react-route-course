@@ -9,15 +9,15 @@ const vanCard = ({ vans }) => {
         {vans?.map((van) => (
           <div
             key={van.id}
-            className="w-1/5 cursor-pointer shadow-lg hover:shadow-xl rounded-lg"
+            className="w-72 cursor-pointer shadow-lg hover:shadow-xl rounded-lg"
           >
             <Link to={`/vans/${van.id}`}>
               <div className=" p-2">
                 <img src={van.imageUrl} alt={van.name} className="rounded-lg" />
                 <h1 className="font-semibold">{van.name}</h1>
                 <p className="text-green-600 font-semibold py-2">
-                  ${van.price}
-                  <span>/day</span>
+                  <span className="font-bold">${van.price}</span>
+                  /day
                 </p>
                 <p className="text-white bg-green-600 p-2 fo rounded-lg w-1/3 text-center font-semibold">
                   {van.type}
