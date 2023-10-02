@@ -18,8 +18,8 @@ const Vandetail = () => {
   return (
     <div>
       {vansdetails ? (
-        <div className="flex md:justify-center gap-4 items-center">
-          <div className="w-1/2">
+        <div className="flex flex-wrap justify-center gap-4 items-center">
+          <div className="w-2/5">
             <img
               src={vansdetails.imageUrl}
               alt={vansdetails.name}
@@ -27,7 +27,7 @@ const Vandetail = () => {
             />
           </div>
 
-          <div className="w-1/2">
+          <div className="w-2/5">
             <h2 className="font-bold text-2xl text-green-600 py-2">
               {vansdetails.name}
             </h2>

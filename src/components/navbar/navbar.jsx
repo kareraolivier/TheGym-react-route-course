@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <div>
-      <nav className="flex justify-between py-6 px-4 shadow-lg">
+      <nav className="flex justify-between py-6 px-10 shadow-lg">
         <div>
           <Link to="/" className="font-bold text-2xl hover:text-green-600">
             Logo
           </Link>
         </div>
-        <div className="flex gap-4">
+        <div className="flex gap-8">
           <Link to="/" className="font-semibold text-lg hover:text-green-600">
             Home
           </Link>
