@@ -1,10 +1,11 @@
-import { Outlet, NavLink } from "react-router-dom";
-import { dashborddata } from "./layout.links";
-const host = () => {
+import { NavLink } from "react-router-dom";
+import { vanlistdata } from "./layout.links";
+
+const VanListDetailLayout = () => {
   return (
     <div className="px-8">
       <nav className="flex gap-8 py-6">
-        {dashborddata.map((data) => (
+        {vanlistdata.map((data) => (
           <NavLink
             key={data.id}
             end
@@ -19,9 +20,8 @@ const host = () => {
           </NavLink>
         ))}
       </nav>
-      <Outlet />
     </div>
   );
 };
 
-export default host;
+export default VanListDetailLayout;

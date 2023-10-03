@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { navdata } from "./navdata";
 const Navbar = () => {
   return (
     <div>
@@ -9,27 +10,19 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="flex gap-8">
-          <Link to="/" className="font-semibold text-lg hover:text-green-600">
-            Home
-          </Link>
-          <Link
-            to="/vans"
-            className="font-semibold text-lg hover:text-green-600"
-          >
-            Vans
-          </Link>
-          <Link
-            to="/about"
-            className="font-semibold text-lg hover:text-green-600"
-          >
-            About
-          </Link>
-          <Link
-            to="/host"
-            className="font-semibold text-lg hover:text-green-600"
-          >
-            Host
-          </Link>
+          {navdata.map((data) => (
+            <NavLink
+              key={data.id}
+              to={data.link}
+              className="font-semibold text-lg hover:text-green-600"
+              style={({ isActive }) => ({
+                color: isActive ? "green" : "",
+                textDecoration: isActive ? "underline" : "",
+              })}
+            >
+              {data.name}
+            </NavLink>
+          ))}
         </div>
       </nav>
     </div>
