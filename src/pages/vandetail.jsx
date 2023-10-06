@@ -3,7 +3,6 @@ import { useParams, Link, useLocation } from "react-router-dom";
 const Vandetail = () => {
   const [vansdetails, setVansdetails] = useState({});
   const location = useLocation();
-  console.log("first", location);
   const param = useParams();
   useEffect(() => {
     const fetchVanDetails = async () => {
@@ -20,7 +19,6 @@ const Vandetail = () => {
 
   const search = location.state?.search || "";
   const type = location.state?.type || "all";
-  console.log(search);
   return (
     <div className="p-4">
       <Link to={`..${search}`} relative="path">

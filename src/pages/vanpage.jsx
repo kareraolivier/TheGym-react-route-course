@@ -1,27 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import VanCard from "../components/vanCard";
-import { useSearchParams } from "react-router-dom";
-const Vanpage = () => {
-  const [vans, setVans] = useState([]);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [loading, setLoading] = useState(false);
-  const filteredType = searchParams.get("type");
+import { useSearchParams, useLoaderData } from "react-router-dom";
+import { fetchVans } from "../components/api";
 
-  const fetchVans = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch("/api/vans");
-      const data = await response.json();
-      setVans(data.vans);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-  useEffect(() => {
-    fetchVans();
-  }, []);
+export const loader = () => {
+  return fetchVans();
+};
+
+const Vanpage = () => {
+  // const [vans, setVans] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const filteredType = searchParams.get("type");
+  let vans = useLoaderData();
 
   //filtering van
   const displayedVans = filteredType
@@ -68,11 +58,8 @@ const Vanpage = () => {
             </li>
           ))}
         </ul>
-        {loading == false ? (
-          <VanCard vans={displayedVans} searchParams={searchParams} />
-        ) : (
-          <h1>Loading</h1>
-        )}
+
+        <VanCard vans={displayedVans} searchParams={searchParams} />
       </div>
     </div>
   );
