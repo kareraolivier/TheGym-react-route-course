@@ -13,6 +13,7 @@ import Photo from "./pages/host/pricing/photo";
 import Details from "./pages/host/pricing/details";
 import Pricing from "./pages/host/pricing/pricing";
 import Income from "./pages/host/income";
+import PageNotFound from "./pages/404";
 import "./components/server/server";
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
+            <Route path="*" element={<PageNotFound />} />
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="vans" element={<Vanpage />} />
