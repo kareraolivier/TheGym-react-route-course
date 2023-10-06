@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 const Vandetail = () => {
   const [vansdetails, setVansdetails] = useState({});
+  const location = useLocation();
+  console.log("first", location);
   const param = useParams();
   useEffect(() => {
     const fetchVanDetails = async () => {
@@ -15,8 +17,15 @@ const Vandetail = () => {
     };
     fetchVanDetails();
   }, [param.id]);
+
+  const search = location.state?.search || "";
+  const type = location.state?.type || "all";
+  console.log(search);
   return (
     <div className="p-4">
+      <Link to={`..${search}`} relative="path">
+        &larr; <span>Back to {type} vans</span>
+      </Link>
       {vansdetails ? (
         <div className="flex flex-wrap justify-center gap-4 items-center">
           <div className="w-2/5">
