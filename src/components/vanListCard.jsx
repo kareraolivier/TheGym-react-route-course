@@ -9,9 +9,9 @@ const vanCard = ({ vans }) => {
         {vans?.map((van) => (
           <div
             key={van.id}
-            className="w-72 cursor-pointer shadow-lg hover:shadow-xl rounded-lg"
+            className="w-72 cursor-pointer shadow-lg hover:shadow-xl rounded-lg my-8"
           >
-            <Link to={`/host/vans/${van.id}`}>
+            <Link to={van.id}>
               <div className=" p-2">
                 <img src={van.imageUrl} alt={van.name} className="rounded-lg" />
                 <h1 className="font-semibold">{van.name}</h1>
@@ -19,7 +19,12 @@ const vanCard = ({ vans }) => {
                   <span className="font-bold">${van.price}</span>
                   /day
                 </p>
-                <p className="text-white bg-green-600 p-2 fo rounded-lg w-1/3 text-center font-semibold">
+                <p
+                  className={`${van.type == "simple" ? "bg-amber-600" : ""}
+                  ${van.type == "rugged" ? "bg-cyan-600" : ""}
+                  ${van.type == "luxury" ? "bg-green-600" : ""} 
+                  text-white  p-2 fo rounded-lg w-1/3 text-center font-semibold`}
+                >
                   {van.type}
                 </p>
               </div>
