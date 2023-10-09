@@ -7,6 +7,4 @@ export const fetchVans = async () => {
       status: response.status,
     };
   }
-  const data = await response.json();
-  return data.vans;
 };
