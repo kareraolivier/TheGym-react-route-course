@@ -1,21 +1,21 @@
-import { useState } from "react";
 import VanCard from "../components/vanCard";
 import { useSearchParams, useLoaderData } from "react-router-dom";
 import { fetchVans } from "../components/api";
+import { AuthRequired } from "../components/auth/authRequired";
 
-export const loader = () => {
+export const loader = async () => {
+  await AuthRequired();
   return fetchVans();
 };
 
 const Vanpage = () => {
-  // const [vans, setVans] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const filteredType = searchParams.get("type");
   let vans = useLoaderData();
 
   //filtering van
   const displayedVans = filteredType
-    ? vans.filter((van) => van.type === filteredType)
+    ? vans?.filter((van) => van.type === filteredType)
     : vans;
 
   //conditional searchParams filter
@@ -45,7 +45,7 @@ const Vanpage = () => {
               All
             </li>
           )}
-          {[...new Set(vans.map((item) => item.type))].map((van, index) => (
+          {[...new Set(vans?.map((item) => item.type))].map((van, index) => (
             <li
               onClick={() => hundleFilterChange("type", van)}
               key={index}

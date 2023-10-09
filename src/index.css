@@ -6,3 +6,7 @@
 ::-webkit-scrollbar {
     display: none;
 }
+
+.home {
+    background-image: url('./assets/home.jpg');
+}
