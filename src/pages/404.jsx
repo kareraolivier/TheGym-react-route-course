@@ -8,7 +8,7 @@ const PageNotFound = () => {
         to="/"
         className="p-3 rounded-lg text-white bg-green-600 font-semibold text-lg"
       >
-        Back Home
+        Not found Back Home
       </Link>
     </div>
   );
