@@ -2,6 +2,7 @@ import { Link, useRouteError } from "react-router-dom";
 
 const Error = () => {
   const error = useRouteError();
+  // console.log(error);
   return (
     <div className="h-screen flex flex-col gap-5 justify-center items-center">
       <h1 className="text-5xl font-bold text-green-600 ">{error.name}</h1>
@@ -10,7 +11,7 @@ const Error = () => {
         to="/"
         className="p-3 rounded-lg text-white bg-green-600 font-semibold text-lg"
       >
-        Back Home
+        Error go Back Home
       </Link>
     </div>
   );
