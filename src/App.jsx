@@ -3,7 +3,6 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
   RouterProvider,
-  // redirect,
 } from "react-router-dom";
 import Home from "./pages/home";
 import About from "./pages/about";
@@ -22,7 +21,10 @@ import Photo from "./pages/host/pricing/photo";
 import Details from "./pages/host/pricing/details";
 import Pricing from "./pages/host/pricing/pricing";
 import Income from "./pages/host/income";
-import LoginPage, { loader as loginPageLoader } from "./pages/loginPage";
+import LoginPage, {
+  loader as loginPageLoader,
+  action as loginAction,
+} from "./pages/loginPage";
 import PageNotFound from "./pages/404";
 import { AuthRequired } from "./components/auth/authRequired";
 import "./components/server/server";
@@ -36,9 +38,14 @@ const App = () => {
         <Route
           path="about"
           element={<About />}
-          loader={async () => await AuthRequired()}
+          loader={async ({ request }) => await AuthRequired(request)}
         />
-        <Route path="/login" element={<LoginPage />} loader={loginPageLoader} />
+        <Route
+          path="/login"
+          element={<LoginPage />}
+          loader={loginPageLoader}
+          action={loginAction}
+        />
         <Route
           path="vans"
           element={<Vanpage />}
@@ -54,17 +61,17 @@ const App = () => {
           <Route
             index
             element={<Dashboard />}
-            loader={async () => await AuthRequired()}
+            loader={async ({ request }) => await AuthRequired(request)}
           />
           <Route
             path="income"
             element={<Income />}
-            loader={async () => await AuthRequired()}
+            loader={async ({ request }) => await AuthRequired(request)}
           />
           <Route
             path="reviews"
             element={<Reviews />}
-            loader={async () => await AuthRequired()}
+            loader={async ({ request }) => await AuthRequired(request)}
           />
           <Route
             path="vans"
@@ -80,17 +87,17 @@ const App = () => {
             <Route
               index
               element={<Details />}
-              loader={async () => await AuthRequired()}
+              loader={async ({ request }) => await AuthRequired(request)}
             />
             <Route
               path="pricing"
               element={<Pricing />}
-              loader={async () => await AuthRequired()}
+              loader={async ({ request }) => await AuthRequired(request)}
             />
             <Route
               path="photo"
               element={<Photo />}
-              loader={async () => await AuthRequired()}
+              loader={async ({ request }) => await AuthRequired(request)}
             />
           </Route>
         </Route>

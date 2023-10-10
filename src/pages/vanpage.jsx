@@ -1,10 +1,8 @@
 import VanCard from "../components/vanCard";
 import { useSearchParams, useLoaderData } from "react-router-dom";
 import { fetchVans } from "../components/api";
-import { AuthRequired } from "../components/auth/authRequired";
 
-export const loader = async () => {
-  await AuthRequired();
+export const loader = () => {
   return fetchVans();
 };
 
