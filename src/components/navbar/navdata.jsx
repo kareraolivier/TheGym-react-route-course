@@ -19,4 +19,14 @@ export const navdata = [
     name: "Host",
     link: "/host",
   },
+  {
+    id: 5,
+    name: "Login",
+    link: "/login",
+  },
+  {
+    id: 6,
+    name: "Logout",
+    link: "/",
+  },
 ];

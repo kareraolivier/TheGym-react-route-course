@@ -1,52 +1,41 @@
-import { useState } from "react";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import {
+  useLoaderData,
+  useNavigation,
+  redirect,
+  useActionData,
+} from "react-router-dom";
 import LoginForm from "../components/loginForm";
 import { loginUser } from "../components/api";
 export const loader = ({ request }) => {
   const search = new URL(request.url).searchParams.get("message");
   return search;
 };
+export const action = async ({ request }) => {
+  const formData = await request.formData();
+  const email = formData.get("email");
+  const password = formData.get("password");
+  const pathname =
+    new URL(request.url).searchParams.get("redirectTo") || "/host";
+  try {
+    await loginUser({ email, password });
+    localStorage.setItem("logedin", true);
+    return redirect(pathname);
+  } catch (error) {
+    return error.message;
+  }
+};
 const LoginPage = () => {
   const searchData = useLoaderData();
-  const [status, setStatus] = useState("idle");
-  const [error, setError] = useState(null);
-  const [loginFormData, setLoginFormData] = useState({
-    email: "",
-    password: "",
-  });
-  const navigate = useNavigate();
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    console.log(e.target.value);
-    setLoginFormData((prev) => ({ ...prev, [name]: value }));
-  };
-  const submitForm = async () => {
-    setStatus("submitting");
-    setError(null);
-    try {
-      await loginUser(loginFormData);
-      navigate("/host/vans", { replace: true });
-    } catch (error) {
-      setError(error);
-    }
-    setLoginFormData({ email: "", password: "" });
-    setStatus("idle");
-  };
-  setTimeout(() => {
-    setError(null);
-  }, 10000);
+  const errorMessage = useActionData();
+  const navigation = useNavigation();
+
   return (
     <div className="h-screen flex flex-col justify-center items-center">
       {searchData && <h1 className="text-green-600 text-lg">{searchData}</h1>}
-      {error !== null && (
-        <h1 className="text-red-600 text-lg">{error.message}</h1>
+      {errorMessage !== null && (
+        <h1 className="text-red-600 text-lg">{errorMessage}</h1>
       )}
-      <LoginForm
-        handleChange={handleChange}
-        submitForm={submitForm}
-        inputData={loginFormData}
-        status={status}
-      />
+      <LoginForm navigation={navigation} />
     </div>
   );
 };
