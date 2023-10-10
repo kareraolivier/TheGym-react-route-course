@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { createServer, Model, Response } from "miragejs";
 
 createServer({
@@ -84,6 +85,7 @@ createServer({
   routes() {
     this.namespace = "api";
     this.logging = false;
+    this.passthrough("https://firestore.googleapis.com/**");
     // this.timing = 2000
 
     this.get("/vans", (schema, request) => {
