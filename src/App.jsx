@@ -55,6 +55,7 @@ const App = () => {
         <Route
           path="vans/:id"
           element={<Vandetail />}
+          errorElement={<Error />}
           loader={vanDetailLoader}
         />
         <Route path="host" element={<Host />}>
@@ -82,6 +83,7 @@ const App = () => {
           <Route
             path="vans/:id"
             element={<Vanlistdetail />}
+            errorElement={<Error />}
             loader={vanPageListDetailLoader}
           >
             <Route
