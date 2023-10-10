@@ -1,0 +1,30 @@
+{
+  "default_branch": "main",
+  "branches": [
+    "ch/Completed-course",
+    "ch/oldRouter",
+    "ft/defferdata",
+    "ft/form",
+    "ft/loader",
+    "main",
+    "origin"
+  ],
+  "parent": {
+    "ch/Completed-course": "main",
+    "ch/oldRouter": "main",
+    "ft/defferdata": "main",
+    "ft/form": "main",
+    "ft/loader": "main",
+    "main": null,
+    "origin": "main"
+  },
+  "order": [
+    "main",
+    "ch/Completed-course",
+    "ch/oldRouter",
+    "ft/defferdata",
+    "ft/form",
+    "ft/loader",
+    "origin"
+  ]
+}
