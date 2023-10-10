@@ -2,7 +2,7 @@ import { Link, useRouteError } from "react-router-dom";
 
 const Error = () => {
   const error = useRouteError();
-  // console.log(error);
+  console.log("comp error", error);
   return (
     <div className="h-screen flex flex-col gap-5 justify-center items-center">
       <h1 className="text-5xl font-bold text-green-600 ">{error.name}</h1>
