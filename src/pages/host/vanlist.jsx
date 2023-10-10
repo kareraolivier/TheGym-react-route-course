@@ -1,19 +1,24 @@
+import { Suspense } from "react";
 import { fetchVansList } from "../../components/api";
 import VanCard from "../../components/vanListCard";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, Await, defer } from "react-router-dom";
 import { AuthRequired } from "../../components/auth/authRequired";
 
 export const loader = async ({ request }) => {
   await AuthRequired(request);
-  return fetchVansList();
+  return defer({ vans: fetchVansList() });
 };
 const Vanlist = () => {
-  let vans = useLoaderData();
+  let vansListPromise = useLoaderData();
 
   return (
     <div>
       <div className="">
-        <VanCard vans={vans} />
+        <Suspense fallback={<p>Loading ...</p>}>
+          <Await resolve={vansListPromise.vans}>
+            {(vans) => <VanCard vans={vans} />}
+          </Await>
+        </Suspense>
       </div>
     </div>
   );
