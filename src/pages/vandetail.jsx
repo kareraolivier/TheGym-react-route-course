@@ -1,8 +1,8 @@
 import { Link, useLocation, useLoaderData } from "react-router-dom";
-import { fetchVans } from "../components/api";
+import { fetchVan } from "../components/api";
 
 // eslint-disable-next-line react-refresh/only-export-components
-export const loader = ({ params }) => fetchVans(params.id);
+export const loader = ({ params }) => fetchVan(params.id);
 
 const Vandetail = () => {
   const location = useLocation();
