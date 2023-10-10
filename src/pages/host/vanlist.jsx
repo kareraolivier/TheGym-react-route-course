@@ -3,8 +3,8 @@ import VanCard from "../../components/vanListCard";
 import { useLoaderData } from "react-router-dom";
 import { AuthRequired } from "../../components/auth/authRequired";
 
-export const loader = async () => {
-  await AuthRequired();
+export const loader = async ({ request }) => {
+  await AuthRequired(request);
   return fetchVansList();
 };
 const Vanlist = () => {

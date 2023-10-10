@@ -1,9 +1,12 @@
 import { fetchVansList } from "../../components/api";
 import { Link, Outlet, useLoaderData } from "react-router-dom";
 import VanListDetailLayout from "../../components/Layout/vanlistdetail.layout";
-
+import { AuthRequired } from "../../components/auth/authRequired";
 // eslint-disable-next-line react-refresh/only-export-components
-export const loader = ({ params }) => fetchVansList(params.id);
+export const loader = async ({ params, request }) => {
+  await AuthRequired(request);
+  return fetchVansList(params.id);
+};
 
 const Vanlistdatail = () => {
   let vansdetails = useLoaderData();
