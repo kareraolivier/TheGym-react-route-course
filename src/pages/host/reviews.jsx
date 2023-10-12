@@ -1,5 +1,5 @@
 const Reviews = () => {
-  return <div>Reviews</div>;
+  return <div className="h-screen">Reviews</div>;
 };
 
 export default Reviews;
